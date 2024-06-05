@@ -1,14 +1,28 @@
 var player;
-var startTime = localStorage.getItem('startTime') || 0; // 開始時間（秒）
-var trtime = localStorage.getItem('trtime') || 0;
-var endTime = localStorage.getItem('endTime') || 82;  // 結束時間（秒）
-var vid = localStorage.getItem('vid') || 'auto'; // 預設值改為'auto'
+
+function getSetting(key, defaultValue) {
+    var value = localStorage.getItem(key);
+    console.log(`Getting setting ${key}: ${value}`);
+    if (value === 'auto' || value === null || isNaN(value)) {
+        return defaultValue;
+    }
+    return parseFloat(value);
+}
+
+var startTime = getSetting('startTime', 4); // 開始時間（秒）
+var trtime = getSetting('trtime', 10); // 跳轉時間（秒）
+var endTime = getSetting('endTime', 23);  // 結束時間（秒）
+var vid = localStorage.getItem('vid') || 'auto'; // 替換為'auto'
+
+// 設置預設值
+if (vid === 'auto') {
+    vid = '9jBA3SA2aIs'; // 預設影片ID
+}
+
+console.log(`Player settings: startTime=${startTime}, trtime=${trtime}, endTime=${endTime}, vid=${vid}`);
 
 function onYouTubeIframeAPIReady() {
-      // 如果 vid 是 'auto'，設置為預設影片ID
-    if (vid === 'auto') {
-        vid = 'c1TmVdHdpZE'; // 預設影片ID
-    }
+    console.log('YouTube Iframe API Ready');
     player = new YT.Player('player', {
         height: '360',
         width: '640',
@@ -31,18 +45,29 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+    console.log('Player Ready');
     event.target.playVideo(); // 播放影片
 }
 
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING) {
+        console.log('Player Playing');
         var checkTime = function() {
             var currentTime = player.getCurrentTime();
+            console.log(`Current time: ${currentTime}`);
             if (currentTime >= endTime) {
                 player.seekTo(trtime); // 當到達結束時間時，重新跳轉到開始時間
             }
-            setTimeout(checkTime, 500); // 每秒檢查一次時間
+            setTimeout(checkTime, 100); // 每秒檢查一次時間
         };
         checkTime(); // 開始檢查時間
     }
+}
+
+// 确保 YouTube API 脚本加载完成后执行
+if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }

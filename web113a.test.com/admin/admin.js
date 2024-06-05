@@ -1,17 +1,19 @@
+function updateSettings() {
+    var startTime = document.getElementById('startTime').value;
+    var trtime = document.getElementById('trtime').value;
+    var endTime = document.getElementById('endTime').value;
+    var vid = document.getElementById('vid').value;
 
-    function updateSettings() {
-      var startTime = document.getElementById('startTime').value;
-      var trtime = document.getElementById('trtime').value;
-      var endTime = document.getElementById('endTime').value;
-      var vid = document.getElementById('vid').value;
+    localStorage.setItem('startTime', startTime);
+    localStorage.setItem('trtime', trtime);
+    localStorage.setItem('endTime', endTime);
+    localStorage.setItem('vid', vid);
 
-      localStorage.setItem('startTime', startTime);
-      localStorage.setItem('trtime', trtime);
-      localStorage.setItem('endTime', endTime);
-      localStorage.setItem('vid', vid);
+    alert('設置已更新');
+      // Reload the page to apply the new settings
+    location.reload();
+}
 
-      alert('設置已更新');
-    }
 //---------背景設定--------------------
 var player;
 var startTimea = 4; // 開始時間（秒）

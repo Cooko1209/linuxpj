@@ -29,16 +29,17 @@
     <div class="card">
 
       <form id="settingsForm">
-        <label for="vid">影片ID:</label>
-        <input type="text" id="vid" name="vid" value=" "><br><br>
         <label for="startTime">開始時間（秒）:</label>
-        <input type="number" id="startTime" name="startTime" value=" "><br><br>
+        <input type="text" id="startTime" name="startTime" value="0"><br><br>
 
         <label for="trtime">跳轉時間（秒）:</label>
-        <input type="number" id="trtime" name="trtime" value=" "><br><br>
+        <input type="text" id="trtime" name="trtime" value="0"><br><br>
 
         <label for="endTime">結束時間（秒）:</label>
-        <input type="number" id="endTime" name="endTime" value=" "><br><br>
+        <input type="text" id="endTime" name="endTime" value="70"><br><br>
+
+        <label for="vid">影片ID:</label>
+        <input type="text" id="vid" name="vid" value="9jBA3SA2aIs"><br><br>
 
         <button type="button" onclick="updateSettings()">更新設置</button>
       </form>
