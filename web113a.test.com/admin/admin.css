@@ -1,0 +1,173 @@
+body,
+html {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* min-height: 100vh; 是一個 CSS 屬性，用於設置元素的最小高度為視窗高度的 100%。這意味著無論視窗的大小如何，該元素的高度至少會與視窗的高度相同。這在確保背景影片或其他元素能夠覆蓋整個視窗高度時非常有用。 */
+  overflow: hidden; /* 隐藏溢出内容 */
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.video-foreground {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* 禁用影片控制
+  opacity: 0; /* 透明度为 0 */
+  transition: opacity 1s ease-in-out; /* 添加漸變效果 */
+}
+
+iframe {
+  width: 100vw;
+  height: 56.25vw;
+  /* 16:9 aspect ratio */
+  min-height: 100vh;
+  min-width: 177.78vh;
+  /* 16:9 aspect ratio */
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0); /* 卡片背景透明色 */
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.player,
+.fallback {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.fallback {
+  background-color: transparent;
+} /* 背景色为透明 */
+
+.player.loading {
+  opacity: 0;
+}
+
+.fallback iframe {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+/*控制影片播放內容*/
+
+/* 标题样式 */
+.header {
+  font-family: "標楷體", sans-serif;
+  font-size: 40px; /* 字体大小 */
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 60px; /* 圆角边框 */
+  margin-bottom: 40px; /* 标题下边距 */
+  color: #a5caff;
+  background: linear-gradient(45deg, #d7c0eb, #e0e4fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+/* 标题样式 */
+.header {
+  font-family: "標楷體", sans-serif;
+  font-size: 40px; /* 字体大小 */
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 60px; /* 圆角边框 */
+  margin-bottom: 40px; /* 标题下边距 */
+  color: #a5caff;
+  background: linear-gradient(45deg, #d7c0eb, #e0e4fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+/* 卡片容器样式 */
+.card-container {
+  display: flex;
+  justify-content: space-around; /* 在主軸上均勻分配子元素的空間 */
+  padding-left: 10%;
+  padding-right: 10%;
+  flex-wrap: wrap; /* 允許子元素換行 */
+}
+
+/* 卡片样式 */
+.card {
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+  width: 300px;
+  margin: 10px; /* 卡片的外邊距 */
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05); /* 鼠標懸停時放大卡片 */
+
+  z-index: 1;
+  box-shadow: 0 0px 16px rgba(111, 111, 212, 0.5);
+  background-color: #ccffd7;
+  transition: all 0.3s ease-in-out; /* 平滑過渡效果 */
+}
+
+/* 卡片内圖片样式 */
+.card img {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  opacity: 0.5; /* 设置图片透明度为0.3，使其看起来更透明 */
+  background: rgba(255, 255, 255, 0); /* 半透明背景 */
+}
+.card label {
+  color: #ffffff;
+}
+
+.card:hover img {
+  opacity: 1;
+}
+.card:hover label {
+  opacity: 1;
+  color: #000;
+}
+
+/* 卡片内文本样式 */
+.card p {
+  font-size: 16px;
+  color: #000000;
+  margin-top: 10px;
+  line-height: 1.6;
+  font-weight: bold;
+  opacity: 0.5;
+}
