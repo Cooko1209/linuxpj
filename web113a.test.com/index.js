@@ -71,12 +71,25 @@ if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
-/*會員登入登出設定*/
+/*會員登入登出設定
 document.addEventListener("DOMContentLoaded", function () {
   var userName = localStorage.getItem("userName");
   if (userName) {
     document.getElementById("user-name").innerText = `VIP會員, ${userName}, 您好!`;
     document.getElementById("logout-btn").style.display = "inline-block";
+  }
+
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("userName");
+    window.location.href = "index.html";
+  });
+});
+*/
+document.addEventListener("DOMContentLoaded", function () {
+  var userName = localStorage.getItem("userName");
+  if (userName) {
+    document.getElementById("user-name").innerText = `VIP會員 ${userName} 您好!`;
+    document.getElementById("user-info").style.display = "flex";
   }
 
   document.getElementById("logout-btn").addEventListener("click", function () {
