@@ -34,7 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows === 1) {
         $_SESSION['username'] = $username;
-        header('Location: ../index.html');
+        echo "<script>
+                localStorage.setItem('userName', '$username');
+                window.location.href = '../index.html';
+              </script>";
         exit();
     } else {
         header('Location: login.html?error=1');

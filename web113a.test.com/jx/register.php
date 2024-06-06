@@ -37,3 +37,4 @@ if (isset($_POST['registerBtn'])) {
     // 關閉連接
     $conn->close();
 }
+?>

@@ -81,6 +81,10 @@ iframe {
 
 /* 标题样式 */
 .header {
+  position: relative;
+}
+
+.header h1 {
   font-family: "標楷體", sans-serif;
   font-size: 40px; /* 字体大小 */
   font-weight: bold;
@@ -93,6 +97,49 @@ iframe {
   -webkit-text-fill-color: transparent;
   display: inline-block;
   padding: 10px 20px;
+}
+
+/* 會員控制區塊 */
+
+#user-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px 20px; /* 調整位置 */
+  display: flex;
+  align-items: center;
+}
+
+.member-name {
+  position: absolute;
+  z-index: 1;
+  width: auto;
+  height: 30px;
+  top: 10%;
+  right: 10px;
+  margin: 10px 20px; /* 調整位置 */
+  background-color: rgba(132, 209, 219, 0.466); /* 背景色 */
+  padding: 5px 10px; /* 內邊距 */
+  border-radius: 5px; /* 圓角 */
+  box-shadow: 0 0 10px rgba(59, 233, 43, 0.74); /* 陰影效果 */
+  font-size: 16px; /* 字體大小 */
+  color: #ffffff; /* 字體顏色 */
+}
+
+.logout-btn {
+  z-index: 1;
+  background-color: #ff6b6b; /* 背景色 */
+  color: white; /* 字體顏色 */
+  border: none; /* 無邊框 */
+  border-radius: 5px; /* 圓角 */
+  padding: 5px 10px; /* 內邊距 */
+  margin-left: 10px; /* 與會員名稱的間距 */
+  cursor: pointer; /* 滑鼠指標樣式 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 陰影效果 */
+}
+
+.logout-btn:hover {
+  background-color: #ff4b4b; /* 滑鼠懸停時的背景色 */
 }
 
 /* 卡片容器样式 */

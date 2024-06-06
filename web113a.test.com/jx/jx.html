@@ -11,7 +11,9 @@
 <body>
   <div class="registration-form">
     <h2>註冊會員</h2>
-    <p>請輸入您的手機號碼並選取傳送驗證碼，收到簡訊後將驗證碼填入</p>
+    <label for="fullName">會員名稱</label>
+    <input type="text" id="fullName" name="fullName">
+
     <form id="registerForm" action="register.php" method="post">
       <label for="phone">手機號碼<span class="required">*</span></label>
       <input type="text" id="phone" name="phone" required>
@@ -26,8 +28,7 @@
       <label for="confirmPassword">確認密碼<span class="required">*</span></label>
       <input type="password" id="confirmPassword" name="confirmPassword" required>
 
-      <label for="fullName">真實姓名</label>
-      <input type="text" id="fullName" name="fullName">
+
 
       <label>性別<span class="required">*</span></label>
       <input type="radio" id="genderFemale" name="gender" value="female" required>
