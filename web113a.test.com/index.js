@@ -1,5 +1,56 @@
 var player;
 
+function onYouTubeIframeAPIReady() {
+  var vid = localStorage.getItem('vid') || '9jBA3SA2aIs';
+  var startTime = parseInt(localStorage.getItem('startTime')) || 0;
+
+  player = new YT.Player('player', {
+    videoId: vid,
+    playerVars: {
+      'autoplay': 1,            // 自動播放
+      'controls': 0,            // 不顯示控制項
+      'modestbranding': 1,      // 隱藏YouTube標誌
+      'loop': 1,                // 迴圈播放
+      'mute': 1,                // 靜音播放
+      'loop': 1,
+      'playlist': vid,
+      'start': startTime,
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+            event.target.setPlaybackQuality('highres');  // 最高畫質
+            event.target.playVideo();  // 開始播放
+        }
+
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.ENDED) {
+    var trtime = parseInt(localStorage.getItem('trtime')) || 0;
+    event.target.seekTo(trtime);
+    event.target.playVideo();
+  }
+}
+
+// Listen for the custom 'settingsUpdated' event
+window.addEventListener('settingsUpdated', function() {
+  // Update the player with the new settings
+  var vid = localStorage.getItem('vid');
+  var startTime = parseInt(localStorage.getItem('startTime')) || 0;
+
+  player.loadVideoById({
+    videoId: vid,
+    startSeconds: startTime
+  });
+});
+
+/*
+var player;
+
 function getSetting(key, defaultValue) {
     var value = localStorage.getItem(key);
     console.log(`Getting setting ${key}: ${value}`);
@@ -11,12 +62,12 @@ function getSetting(key, defaultValue) {
 
 var startTime = getSetting('startTime', 4); // 開始時間（秒）
 var trtime = getSetting('trtime', 10); // 跳轉時間（秒）
-var endTime = getSetting('endTime', 23);  // 結束時間（秒）
+var endTime = getSetting('endTime', 60);  // 結束時間（秒）
 var vid = localStorage.getItem('vid') || 'auto'; // 替換為'auto'
 
 // 設置預設值
 if (vid === 'auto') {
-    vid = '9jBA3SA2aIs'; // 預設影片ID
+    vid = 'c1TmVdHdpZE'; // 預設影片ID
 }
 
 console.log(`Player settings: startTime=${startTime}, trtime=${trtime}, endTime=${endTime}, vid=${vid}`);
@@ -30,8 +81,7 @@ function onYouTubeIframeAPIReady() {
         playerVars: {
             'autoplay': 1,            // 自動播放
             'controls': 0,            // 不顯示控制項
-            'showinfo': 0,            // 不顯示影片資訊（此參數在新版API中已被廢棄）
-            'modestbranding': 1,      // 隱藏YouTube標誌
+                        'modestbranding': 1,      // 隱藏YouTube標誌
             'loop': 1,                // 迴圈播放
             'mute': 1,                // 靜音播放
             'start': startTime,       // 設置開始播放時間
@@ -71,6 +121,7 @@ if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }
+
 /*會員登入登出設定
 document.addEventListener("DOMContentLoaded", function () {
   var userName = localStorage.getItem("userName");

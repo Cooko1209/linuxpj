@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* 設定最大寬度 */
+  height: 70%;
+  overflow: hidden;
+  border: 2px solid #fff;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll; /* hidden; scroll; 滾動條
+如果希望內容溢出時依然顯示出來，可以使用 visible。
+如果希望內容溢出時隱藏起來，可以使用 hidden。
+如果希望始終顯示滾動條，使用 scroll。
+如果希望在需要時顯示滾動條，使用 auto。
+如果希望剪裁內容但不顯示滾動條，可以使用 clip。 */
+  scroll-behavior: smooth;
+  width: 1200px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 600px;
+  margin: 0 5px;
+  position: relative;
+}
+
+.carousel-item img {
+  width: 95%;
+  vertical-align: middle;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 100;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}

@@ -1,3 +1,34 @@
+// 从 localStorage 读取设置并初始化表单
+window.onload = function() {
+  var startTime = localStorage.getItem('startTime') || '0';
+  var trtime = localStorage.getItem('trtime') || '0';
+  var endTime = localStorage.getItem('endTime') || '70';
+  var vid = localStorage.getItem('vid') || 'c1TmVdHdpZE';
+
+  document.getElementById('startTime').value = startTime;
+  document.getElementById('trtime').value = trtime;
+  document.getElementById('endTime').value = endTime;
+  document.getElementById('vid').value = vid;
+}
+
+function updateSettings() {
+  var startTime = document.getElementById('startTime').value;
+  var trtime = document.getElementById('trtime').value;
+  var endTime = document.getElementById('endTime').value;
+  var vid = document.getElementById('vid').value;
+
+  localStorage.setItem('startTime', startTime);
+  localStorage.setItem('trtime', trtime);
+  localStorage.setItem('endTime', endTime);
+  localStorage.setItem('vid', vid);
+
+  alert('設置已更新');
+  // Dispatch a custom event to notify index.js about the changes
+  window.dispatchEvent(new Event('settingsUpdated'));
+}
+
+
+/*
 function updateSettings() {
     var startTime = document.getElementById('startTime').value;
     var trtime = document.getElementById('trtime').value;
@@ -13,7 +44,7 @@ function updateSettings() {
       // Reload the page to apply the new settings
     location.reload();
 }
-
+*/
 //---------背景設定--------------------
 var player;
 var startTimea = 4; // 開始時間（秒）
